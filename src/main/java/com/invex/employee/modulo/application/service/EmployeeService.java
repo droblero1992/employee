@@ -2,6 +2,7 @@ package com.invex.employee.modulo.application.service;
 
 import com.invex.employee.modulo.application.exception.EmployeeNotFoundException;
 import com.invex.employee.modulo.application.port.in.AddEmployeeUseCase;
+import com.invex.employee.modulo.application.port.in.DeleteEmployeeUseCase;
 import com.invex.employee.modulo.application.port.in.GetEmployeeUseCase;
 import com.invex.employee.modulo.application.port.in.UpdateEmployeeUseCase;
 import com.invex.employee.modulo.application.port.in.dto.EmployeeDTO;
@@ -17,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase, UpdateEmployeeUseCase {
+public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase, UpdateEmployeeUseCase, DeleteEmployeeUseCase {
     public static final String EMPLOYEE_NOT_FOUND = "Employee not found";
     private final EmployeeRepository employeeRepository;
 
@@ -43,5 +44,11 @@ public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase, 
         Employee employeeOne = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(EMPLOYEE_NOT_FOUND));
         Employee update = employeeOne.merge(employee);
         employeeRepository.saveAll(List.of(update));
+    }
+
+    @Override
+    public void deleteEmployee(final String id) {
+        employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(EMPLOYEE_NOT_FOUND));
+        employeeRepository.deleteById(id);
     }
 }

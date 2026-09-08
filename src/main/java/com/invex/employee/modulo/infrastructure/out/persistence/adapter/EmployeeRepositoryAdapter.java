@@ -41,7 +41,7 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
 
     @Override
     public void deleteById(String id) {
-
+        employeeRepository.deleteById(id);
     }
 
     @Override
