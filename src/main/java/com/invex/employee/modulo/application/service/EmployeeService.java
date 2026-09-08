@@ -3,6 +3,7 @@ package com.invex.employee.modulo.application.service;
 import com.invex.employee.modulo.application.exception.EmployeeNotFoundException;
 import com.invex.employee.modulo.application.port.in.AddEmployeeUseCase;
 import com.invex.employee.modulo.application.port.in.GetEmployeeUseCase;
+import com.invex.employee.modulo.application.port.in.UpdateEmployeeUseCase;
 import com.invex.employee.modulo.application.port.in.dto.EmployeeDTO;
 import com.invex.employee.modulo.application.port.out.EmployeeRepository;
 import com.invex.employee.modulo.domain.model.Employee;
@@ -16,7 +17,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase {
+public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase, UpdateEmployeeUseCase {
+    public static final String EMPLOYEE_NOT_FOUND = "Employee not found";
     private final EmployeeRepository employeeRepository;
 
     @Override
@@ -30,8 +32,16 @@ public class EmployeeService implements AddEmployeeUseCase, GetEmployeeUseCase {
     }
 
     @Override
-    public Employee getEmployeeById(String id) {
+    public Employee getEmployeeById(final String id) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        return employee.orElseThrow(() -> new EmployeeNotFoundException("Empleado no existe"));
+        return employee.orElseThrow(() -> new EmployeeNotFoundException(EMPLOYEE_NOT_FOUND));
+    }
+
+    @Override
+    public void updateEmployee(final String id, final Employee employee) {
+        employee.setId(id);
+        Employee employeeOne = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(EMPLOYEE_NOT_FOUND));
+        Employee update = employeeOne.merge(employee);
+        employeeRepository.saveAll(List.of(update));
     }
 }

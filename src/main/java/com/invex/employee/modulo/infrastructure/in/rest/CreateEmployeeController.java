@@ -1,6 +1,7 @@
 package com.invex.employee.modulo.infrastructure.in.rest;
 
 import com.invex.employee.modulo.application.port.in.AddEmployeeUseCase;
+import com.invex.employee.modulo.application.port.in.UpdateEmployeeUseCase;
 import com.invex.employee.modulo.domain.model.Employee;
 import com.invex.employee.modulo.infrastructure.in.rest.dto.CreateEmployeeReq;
 import com.invex.employee.modulo.infrastructure.in.rest.dto.EmployeeDTO;
@@ -20,7 +21,9 @@ import java.util.List;
 @RequestMapping("/api/v1/employees")
 public class CreateEmployeeController {
     private final AddEmployeeUseCase addEmployeeUseCase;
+    private final UpdateEmployeeUseCase updateEmployeeUseCase;
     private final EmployeeMapper employeeMapper;
+
     @PostMapping
     public ResponseEntity<Void> create(@NotNull @Valid @RequestBody CreateEmployeeReq employeeDTO) {
         addEmployeeUseCase.addEmployee(employeeDTO.getEmployees().stream().map(employeeMapper::employeeDTOToModel).toList());
@@ -28,8 +31,8 @@ public class CreateEmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@NotNull @Valid @RequestBody CreateEmployeeReq employeeDTO, @PathVariable String id) {
-        addEmployeeUseCase.addEmployee(employeeDTO.getEmployees().stream().map(employeeMapper::employeeDTOToModel).toList());
+    public ResponseEntity<Void> update(@NotNull @RequestBody EmployeeDTO employeeDTO, @PathVariable String id) {
+        updateEmployeeUseCase.updateEmployee(id, employeeMapper.employeeDTOToModel(employeeDTO));
         return ResponseEntity.noContent().build();
     }
 }

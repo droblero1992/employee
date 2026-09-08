@@ -60,7 +60,7 @@ public class EmployeeEntity {
         entity.birthDate = emp.getBirthDate();
         entity.setPosition(emp.getPosition());
         entity.setStartDate(LocalDate.now());
-        entity.setStatus(Boolean.TRUE);
+        entity.setStatus(emp.getStatus());
         return entity;
     }
 
