@@ -1,0 +1,229 @@
+{
+  "info": {
+    "_postman_id": "8d3648c8-c1f9-4ca4-a2a7-2044187a66a8",
+    "name": "Employee",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6860578"
+  },
+  "item": [
+    {
+      "name": "create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employees\": [\r\n    {\r\n      \"firstName\": \"Carlos\",\r\n      \"middleName\": \"Alberto\",\r\n      \"lastName\": \"Pérez\",\r\n      \"secondLastName\": \"Gómez\",\r\n      \"age\": 30,\r\n      \"gender\": \"MASCULINO\",\r\n      \"birthDate\": \"1996-05-15\",\r\n      \"position\": \"Software Engineer\",\r\n      \"startDate\": \"2024-01-15\",\r\n      \"status\": true\r\n    },\r\n    {\r\n      \"firstName\": \"Ana\",\r\n      \"middleName\": \"María\",\r\n      \"lastName\": \"López\",\r\n      \"secondLastName\": \"Hernández\",\r\n      \"age\": 28,\r\n      \"gender\": \"FEMENINO\",\r\n      \"birthDate\": \"1997-11-22\",\r\n      \"position\": \"QA Lead\",\r\n      \"startDate\": \"2023-08-01\",\r\n      \"status\": true\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualiza",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"status\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees/206c6bf8-0e38-4dce-85ba-873ab7ab407f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "206c6bf8-0e38-4dce-85ba-873ab7ab407f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n    \"employees\":[\r\n        {\r\n            \"firstName\":\"Denys\",\r\n            \"middleName\":\"Eloy\",\r\n            \"lastName\":\"Robe\",\r\n            \"secondLastName\":\"Rob\",\r\n            \"age\":12,\r\n            \"gender\":\"M\",\r\n            \"birthDate\":\"1992-12-06\",\r\n            \"status\":false,\r\n            \"position\":\"Gerente\"\r\n\r\n        }\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees/ee22352b-bba2-4c87-a1a9-e3567ea2089b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "ee22352b-bba2-4c87-a1a9-e3567ea2089b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getAll",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees?page=0&size=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0",
+              "type": "text"
+            },
+            {
+              "key": "size",
+              "value": "10",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get By Id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees/206c6bf8-0e38-4dce-85ba-873ab7ab407f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "206c6bf8-0e38-4dce-85ba-873ab7ab407f"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getByName",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/employees/search?name=denys&page=0&size=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "denys"
+            },
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
