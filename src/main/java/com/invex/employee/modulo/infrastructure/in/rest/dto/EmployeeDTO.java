@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.cglib.core.Local;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -24,6 +26,7 @@ public class EmployeeDTO {
     private String lastName;
     @NotNull
     private String secondLastName;
+    @Min(value = 18, message = "Age must be at least 18")
     @NotNull
     private Integer age;
     @NotNull
