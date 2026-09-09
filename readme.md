@@ -47,7 +47,15 @@ java -jar target/*.jar
 ```
 
 ---
+### Swagger / OpenAPI UI
+Interactive documentation to inspect endpoints, execute requests, and view payload schemas:
+* **Swagger UI:** [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html) *(or [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html))*
+* **OpenAPI Specification (JSON):** [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
 
+### Spring Boot Actuator
+Application monitoring, metrics, and health check endpoints:
+* **Actuator Base URL:** [http://localhost:8080/actuator](http://localhost:8080/actuator)
+* **Health Check:** [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
 
 ---
 
