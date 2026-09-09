@@ -1,1 +1,4 @@
 
+Este proytecto funciona con una base de datos H2
+
+correr mvn spring-boot:run

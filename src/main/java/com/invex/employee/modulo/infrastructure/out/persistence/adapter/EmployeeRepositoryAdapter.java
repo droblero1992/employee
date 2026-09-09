@@ -23,30 +23,76 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
     private final MapperEntity mapperEntity;
 
 
+    /**
+     *
+     * @param employee
+     */
     @Override
     public void saveAll(List<Employee> employee) {
         List<EmployeeEntity> employeeEntities = employee.stream().map(EmployeeEntity::fromDomain).toList();
         employeeRepository.saveAll(employeeEntities);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Optional<Employee> findById(String id) {
         return employeeRepository.findById(id).map(mapperEntity::entityToModel);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public List<Employee> findByName(String id) {
         return List.of();
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void deleteById(String id) {
         employeeRepository.deleteById(id);
     }
 
+    /**
+     *
+     * @param pageQuery
+     * @return
+     */
     @Override
     public PageResult<Employee> findAll(final PageQuery pageQuery) {
         Page<EmployeeEntity> employePage = employeeRepository.findAll(PageRequest.of(pageQuery.getPage(), pageQuery.getSize()));
+        return getEmployeePageResult(pageQuery, employePage);
+    }
+
+    /**
+     *
+     * @param pageQuery
+     * @param name
+     * @return
+     */
+    @Override
+    public PageResult<Employee> findEmployeesByName(PageQuery pageQuery, String name) {
+        Page<EmployeeEntity> employePage = employeeRepository.findEmployeesByName(PageRequest.of(pageQuery.getPage(), pageQuery.getSize()), name);
+        return getEmployeePageResult(pageQuery, employePage);
+    }
+
+    /**
+     *
+     * @param pageQuery
+     * @param employePage
+     * @return
+     */
+    private PageResult<Employee> getEmployeePageResult(PageQuery pageQuery, Page<EmployeeEntity> employePage) {
         return new PageResult<>(employePage.get().map(mapperEntity::entityToModel).toList(), pageQuery.getPage(), pageQuery.getSize());
     }
+
 }

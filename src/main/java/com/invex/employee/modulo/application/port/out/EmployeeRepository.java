@@ -19,4 +19,5 @@ public interface EmployeeRepository {
 
     PageResult<Employee> findAll(PageQuery pageQuery);
 
+    PageResult<Employee> findEmployeesByName(PageQuery pageQuery, String name);
 }
