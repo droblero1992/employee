@@ -46,16 +46,6 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
     /**
      *
      * @param id
-     * @return
-     */
-    @Override
-    public List<Employee> findByName(String id) {
-        return List.of();
-    }
-
-    /**
-     *
-     * @param id
      */
     @Override
     public void deleteById(String id) {

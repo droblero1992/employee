@@ -13,8 +13,6 @@ public interface EmployeeRepository {
 
     Optional<Employee> findById(String id);
 
-    List<Employee> findByName(String id);
-
     void deleteById(String id);
 
     PageResult<Employee> findAll(PageQuery pageQuery);
